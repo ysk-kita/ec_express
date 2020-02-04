@@ -1,24 +1,24 @@
-
 <!-- 商品情報をループして出力させる -->
-<p>新着商品</p>
+<h4 class="border-bottom">新着のお勧め商品</h4>
 <div class="container-fluid border sm-padding-horizontal-0 sm-width-new-item">
-    <div class="new-item-erea-scroll">
+  <div class="new-item-area-scroll">
     <table>
-        <tr>
-            <% for (var item of items) { %>
+      <tr>
+          <% for (var item of items) { %>
             <td>
-                <div class="sm-block-margin sm-width-200">
-                  <div class="card border ">
-                    <img class="card-img-top sm-height-200" alt="<%= item.img_alt %>" src="<%= item.img %>"></p>
-                    <div class="card-body sm-padding-0">
-                      <p><%= item.name %></p>
-                      <p><%= item.price %></p>
-                    </div>
+              <div class="sm-block-margin sm-width-200">
+                <div class="card border-0">
+                  <img class="border card-img-top sm-height-200" alt="<%= item.img_alt %>" src="<%= item.img %>"></p>
+                  <div class="card-body sm-padding-0">
+                    <p class="sm-margin-vertical-0"><%= item.name %></p>
+                    <p class="text-right"><%= item.price %>円</p>
                   </div>
                 </div>
+              </div>
             </td>
-            <% } %>
-        </tr>
+          <% } %>
+      </tr>
     </table>
-    </div>
+  </div>
+
 </div>

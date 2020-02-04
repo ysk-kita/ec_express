@@ -6,19 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
+
 .sm-block-margin {
   margin-left: 20px;
   margin-right: 20px;
   padding: 0px;
 }
 
-.sm-header-margin {
+.sm-header-config {
   margin-bottom: 20px;
+  min-height: 56px;
 }
 
 
 .sm-margin-top-20{
   margin-top: 20px;
+}
+
+.sm-margin-vertical-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .sm-padding-0 {
@@ -28,13 +35,13 @@ a {
 .sm-padding-vertical-0 {
   padding-top: 0px;
   padding-bottom: 0px;
-  
+
 }
 
 .sm-padding-horizontal-0 {
   padding-left:  0px;
   padding-right: 0px;
-  
+
 }
 
 .sm-width-200 {
@@ -56,7 +63,17 @@ a {
   background-color: #C0C0C0;
 }
 
-.new-item-erea-scroll {
+.new-item-area-scroll {
   overflow-x: scroll;
   overflow-y: hidden;
+}
+
+.sm-scroll-button-left {
+  width: 45px;
+  height: 45px;
+}
+
+.sm-scroll-button-right {
+  width: 45px;
+  height: 45px;
 }
