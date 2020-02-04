@@ -1,0 +1,16 @@
+<section class="item-section">
+  <div class="row">
+    <!-- 商品情報をループして出力させる -->
+    <% for (var item of items) { %>
+    <div class="col sm-block-margin sm-width-200">
+      <div class="card border ">
+        <img class="card-img-top sm-height-200" alt="<%= item.img_alt %>" src="<%= item.img %>"></p>
+        <div class="card-body sm-padding-0">
+          <p><%= item.name %></p>
+          <p><%= item.price %></p>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>

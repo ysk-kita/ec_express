@@ -6,3 +6,57 @@ body {
 a {
   color: #00B7FF;
 }
+.sm-block-margin {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0px;
+}
+
+.sm-header-margin {
+  margin-bottom: 20px;
+}
+
+
+.sm-margin-top-20{
+  margin-top: 20px;
+}
+
+.sm-padding-0 {
+  padding: 0px;
+}
+
+.sm-padding-vertical-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  
+}
+
+.sm-padding-horizontal-0 {
+  padding-left:  0px;
+  padding-right: 0px;
+  
+}
+
+.sm-width-200 {
+  max-width:  200px;
+  min-width:  200px;
+}
+
+.sm-width-new-item {
+  max-width:  968px;
+  min-width:  968px;
+}
+
+.sm-height-200 {
+  max-height: 200px;
+  min-height: 200px;
+}
+
+.sm-bg-sliver {
+  background-color: #C0C0C0;
+}
+
+.new-item-erea-scroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

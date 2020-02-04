@@ -1,0 +1,24 @@
+
+<!-- 商品情報をループして出力させる -->
+<p>新着商品</p>
+<div class="container-fluid border sm-padding-horizontal-0 sm-width-new-item">
+    <div class="new-item-erea-scroll">
+    <table>
+        <tr>
+            <% for (var item of items) { %>
+            <td>
+                <div class="sm-block-margin sm-width-200">
+                  <div class="card border ">
+                    <img class="card-img-top sm-height-200" alt="<%= item.img_alt %>" src="<%= item.img %>"></p>
+                    <div class="card-body sm-padding-0">
+                      <p><%= item.name %></p>
+                      <p><%= item.price %></p>
+                    </div>
+                  </div>
+                </div>
+            </td>
+            <% } %>
+        </tr>
+    </table>
+    </div>
+</div>
