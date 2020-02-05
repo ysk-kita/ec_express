@@ -3,15 +3,17 @@ var router = express.Router();
 
 // 自作モジュール呼び出し
 var items = require('../modules/items.js')
+// DB接続knexインスタンス
+var mysql = require('../modules/accessor').client_mysql;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   var price = 2000;
   price = price.toLocaleString();
   var isSale = true;
   
   // Knexで色々書いてDB取得する
-  items.sayHello();
+  //items.getNewItems(mysql);
   
   var data = {
     title: 'Kitazon' ,
