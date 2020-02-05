@@ -4,10 +4,12 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var price = 2000;
-  price = price.toLocaleString()
-
+  price = price.toLocaleString();
+  var isSale = true;
+  
   var data = {
-    title: 'Express' ,
+    title: 'Kitazon' ,
+    sale_status: isSale ? "active": "disabled",
     items: [
       {
         'name': 'うなぎのかば焼き',
