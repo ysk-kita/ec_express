@@ -80,3 +80,19 @@ a {
   width: 45px;
   height: 45px;
 }
+
+.sm-button-search {
+  background-color: coral;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 1px;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: coral;
+  font-size: 16px;
+  cursor : pointer;
+}
