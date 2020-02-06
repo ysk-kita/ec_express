@@ -1,9 +1,11 @@
 <!-- 商品情報をループして出力させる -->
-<h4 class="border-bottom">新着のお勧め商品</h4>
-<div class="container-fluid border sm-padding-horizontal-0 sm-width-new-item">
-  <div class="new-item-area-scroll">
-    <table>
-      <tr>
+
+<% if (existItem) { %>
+  <h4 class="border-bottom">新着のお勧め商品</h4>
+  <div class="container-fluid border sm-padding-horizontal-0 sm-width-new-item">
+    <div class="new-item-area-scroll">
+      <table>
+        <tr>
           <% for (var item of items) { %>
             <td>
               <div class="sm-block-margin sm-width-200">
@@ -17,8 +19,9 @@
               </div>
             </td>
           <% } %>
-      </tr>
-    </table>
+        </tr>
+      </table>
+    </div>
   </div>
+<% } %>
 
-</div>

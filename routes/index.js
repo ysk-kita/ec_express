@@ -41,7 +41,8 @@ router.get('/', function(req, res, next) {
         'img': 'images/item05.png',
         'price': price
       }
-    ]
+    ],
+    existItem: true
   };
   res.render('index', data);
 });
