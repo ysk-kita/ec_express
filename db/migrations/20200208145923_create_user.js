@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
               table.string('mail');
           });
       }else{
-          console.log('items oldest already exits');
           return new Error("The table already exists");
       }
   });
