@@ -97,7 +97,7 @@ a {
   cursor : pointer;
 }
 
-.sign-up-area {
+.sm-sign-up-area {
   border-width: 1px;
   border-style: solid;
   width: 400px;
@@ -105,21 +105,21 @@ a {
   padding-right: 40px;
   padding-left: 40px;
 }
-.sign-up-area > h4 {
+.sm-sign-up-area > h4 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
-.sign-up{
+.sm-sign-up{
   list-style: none;
   padding-left: 20px;
 }
 
-.sign-up li {
+.sm-sign-up li {
   margin-bottom: 10px;
 }
 
-.sign-up li #button {
+.sm-sign-up li #button {
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -131,12 +131,52 @@ a {
   color: white;
 }
 
-.sign-up li > label{
+.sm-sign-up li > label{
   margin-right: 10px;
   width:100px;
 }
 
-.errorMessage {
+.sm-sign-in-area {
+  border-width: 1px;
+  border-style: solid;
+  width: 400px;
+  margin: 0 auto;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.sm-sign-in-area > h4 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.sm-sign-in{
+  list-style: none;
+  padding-left: 20px;
+}
+
+.sm-sign-in li {
+  margin-bottom: 10px;
+}
+
+.sm-sign-in li #button {
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: orange;
+  color: white;
+}
+
+.sm-sign-in li > label{
+  margin-right: 10px;
+  width:100px;
+}
+
+
+.sm-error-message {
   padding-left: 20px;
   list-style: none;
   color: red;

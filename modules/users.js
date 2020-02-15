@@ -9,9 +9,9 @@ var insertUsers = function(client, body){
   });
 }
 
-var getUsers = function(client, body){
+var getUsers = function(client, mail, password){
   // 関数をチェーン実行してDBからオブジェクトを取得する
-  return client.select("*").from("users").where('mail', body.mail)
+  return client.select("*").from("users").where('mail', mail).andWhere('password', password)
   .catch(function(){
     console.log("Error Caused");
   });

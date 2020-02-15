@@ -9,20 +9,20 @@
 
     <%- include('header') %>
 
-    <div class="sm-margin-top-20">
-      <form action="/signup/execute" method="POST">
-        <div class="sign-up-area">
-          <h4>New User</h4>
-            <%- errMsg %>
-            <ul class="sign-up">
-              <li><label>name:</label><input type="text" name="name" value="<%= form.name %>" /></li>
-              <li><label>password:</label><input type="text" name="password" value="<%= form.password %>"/></li>
-              <li><label>mail:</label><input type="text" name="mail" value="<%= form.mail %>"/></li>
-              <li class="col text-center"><input id="button" type="submit" name="button" value="Sign Up"></li>
-            </ul>
-        </div>
-      </form>
-    </div>
+    <div class="sm-margin-top-20"></div>
+    <form action="/signup/execute" method="POST">
+      <div class="sm-sign-up-area">
+        <h4>New User</h4>
+          <%- errMsg %>
+          <ul class="sm-sign-up">
+            <li><label>name:</label><input type="text" name="name" value="<%= form.name %>" /></li>
+            <li><label>password:</label><input type="text" name="password" value="<%= form.password %>"/></li>
+            <li><label>mail:</label><input type="text" name="mail" value="<%= form.mail %>"/></li>
+            <li class="col text-center"><input id="button" type="submit" name="button" value="Sign Up"></li>
+          </ul>
+      </div>
+    </form>
+
 
     <%- include('footer') %>
 

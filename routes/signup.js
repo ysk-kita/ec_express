@@ -5,7 +5,6 @@ var { check, validationResult }  = require('express-validator');
 
 // 自作モジュール呼び出し
 var users = require('../modules/users.js');
-var checker = require('../modules/checker.js');
 // DB接続knexインスタンス
 var mysql = require('../modules/accessor').mysql;
 
@@ -28,7 +27,7 @@ router.post('/execute', [
     // エラー情報の取り出し
     var errors = validationResult(req);
     if(!errors.isEmpty()){
-      var errMsg = '<ul class="errorMessage">';
+      var errMsg = '<ul class="sm-error-message">';
       var res_array = errors.array();
       for (var n in res_array){
         errMsg += '<li>'+ res_array[n].msg +'</li>';
