@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' /> <!-- bootstrapから後で読み込むことにより、細かいクラス定義などを実現する -->
+  </head>
+  <body>
+    <h1 class="sm-margin-top-20"></h1>
+    <form action="/signup/confirm" method="POST">
+      <div class="sign-up-area">
+        <h4>New User</h4>
+          <ul class="sign-up">
+            <li><label>name:</label><input type="text" name="name" /></li>
+            <li><label>password:</label><input type="text" name="password" /></li>
+            <li><label>mail:</label><input type="text" name="mail" /></li>
+            <li class="col text-center"><input id="button" type="submit" name="button" value="Sign Up"></li>
+          </ul>
+      </div>
+    </form>
+
+    <%- include('footer') %>
+
+    <!-- jQuery、Popper.js、Bootstrap.jsの順番で読み込み -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+  </body>
+</html>
