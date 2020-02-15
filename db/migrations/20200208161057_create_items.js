@@ -1,6 +1,5 @@
 
 exports.up = function(knex, Promise) {
-  console.log('items oldest');
   return knex.schema.hasTable('items').then(function(exists) {
       if (!exists) {
           return knex.schema.createTable('items', function(table) {
@@ -18,7 +17,6 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  console.log('items oldest rollback');
   return knex.schema.hasTable('items').then(function(exists) {
       if (exists) {
           return knex.schema.dropTable('items');

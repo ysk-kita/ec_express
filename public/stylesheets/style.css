@@ -107,7 +107,7 @@ a {
 }
 .sign-up-area > h4 {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .sign-up{
@@ -134,4 +134,11 @@ a {
 .sign-up li > label{
   margin-right: 10px;
   width:100px;
+}
+
+.errorMessage {
+  padding-left: 20px;
+  list-style: none;
+  color: red;
+
 }
