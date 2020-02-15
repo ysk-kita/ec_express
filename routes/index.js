@@ -1,50 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
+// 自作モジュール呼び出し
+var items = require('../modules/items.js');
+var checker = require('../modules/checker.js');
+// DB接続knexインスタンス
+var mysql = require('../modules/accessor').mysql;
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var price = 2000;
-  price = price.toLocaleString();
+router.get('/', async function(req, res, next) {
   var isSale = true;
-  
+  newItem = await items.getNewItems(mysql);
   var data = {
     title: 'Kitazon' ,
     sale_status: isSale ? "active": "disabled",
-    items: [
-      {
-        'name': 'うなぎのかば焼き',
-        'img_alt': 'img',
-        'img': 'images/item01.png',
-        'price': price
-      },
-      {
-        'name': 'バーベキューセット',
-        'img_alt': 'img',
-        'img': 'images/item02.png',
-        'price': price
-      },
-      {
-        'name': 'カップラーメン',
-        'img_alt': 'img',
-        'img': 'images/item03.png',
-        'price': price
-      },
-      {
-        'name': '豚骨ラーメン',
-        'img_alt': 'img',
-        'img': 'images/item04.png',
-        'price': price
-      },
-      {
-        'name': '色々セット',
-        'img_alt': 'test05',
-        'img': 'images/item05.png',
-        'price': price
-      }
-    ],
-    existItem: true
+    items: checker.isEmpty(newItem)? []: newItem,
+    existItem: !checker.isEmpty(newItem)
   };
   res.render('index', data);
 });
+
+
 
 module.exports = router;

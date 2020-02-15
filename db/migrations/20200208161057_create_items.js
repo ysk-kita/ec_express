@@ -9,9 +9,10 @@ exports.up = function(knex, Promise) {
               table.string('img_alt');
               table.string('img');
               table.integer('price');
+              table.integer('new_item');
           });
       }else{
-          return new Error("The table already exists. 2");
+          return new Error("The table already exists.");
       }
   });
 };

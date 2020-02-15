@@ -7,38 +7,37 @@ var checker = require('../modules/checker.js');
 // DB接続knexインスタンス
 var mysql = require('../modules/accessor').mysql;
 
-var test2 ="null";
-
 /* GET home page. */
 router.post('/', async function(req, res, next) {
-  var price = 2000;
-  price = price.toLocaleString();
-  var isSale = true;
-  var newItems = "hoge";
-  // Knexで色々書いてDB取得する
-  /*
+
+  if (checker.isEmpty(req.body.search)){
+    // 何も指定されなければindexページに戻す
+    res.redirect('/');
+  } else {
+    // 検索アイテムが指定されているので、searchページに遷移する
+    var isSale = true;
+    var newItems = await items.getSearchItems(mysql);
+    var data = {
+      title: 'Kitazon' ,
+      sale_status: isSale ? "active": "disabled",
+      items: newItems,
+      existItem: !checker.isEmpty(newItems)
+    };
+    res.render('index', data);
+  }
+});
+
+/* 以下promise回りのメモ そのうち移す
+
   console.log("before:" + newItems);
   newItems = items.getSearchItems(mysql);
   console.log("after:" + newItems);
-  */
 
-  // async で無理やり同期処理にする 
+
+  // async で無理やり同期処理にする
   // https://blog.honjala.net/entry/2018/08/08/022027 参考
-  var test = await execPromise("test");
-  console.log("test:" + test);
-
-  console.log("before:" + newItems);
-  newItems = await items.getSearchItems(mysql);
-  console.log("after:" + newItems);
-  
-  var data = {
-    title: 'Kitazon' ,
-    sale_status: isSale ? "active": "disabled",
-    items: [], 
-    existItem: !checker.isEmpty(newItems)
-  };
-  res.render('index', data);
-});
+  // var test = await execPromise("test");
+  // console.log("test:" + test);
 
 function execPromise(arg) {
   return new Promise((resolve, reject)=>{
@@ -56,5 +55,5 @@ function execPromise(arg) {
     return "Return Errors";
   });
 }
-
+*/
 module.exports = router;
