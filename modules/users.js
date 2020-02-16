@@ -1,11 +1,16 @@
 var insertUsers = function(client, body){
+
   return client('users').insert([
     {name: body.name, mail: body.mail, password: body.password},
-  ]).then(function(){
-    console.log("insert complete.")
+  ]).then(function(res){
+    return res
   })
-  .catch(function(){
-    console.log("Error Caused");
+  .catch(function(err){
+    if (err.code == "ER_DUP_ENTRY"){
+      return "DUP"
+    } else {
+      return "ERR"
+    }
   });
 }
 

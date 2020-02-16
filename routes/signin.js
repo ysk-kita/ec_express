@@ -54,6 +54,8 @@ router.post('/execute', [
     } else {
       // todo セッションにログイン情報を格納する
       req.session.isSignIn = true;
+      req.session.userId = user.id;
+
       res.redirect("/");
     }
   }

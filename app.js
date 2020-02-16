@@ -14,7 +14,7 @@ const signOutRouter= require('./routes/signOut');
 const detailRouter= require('./routes/detail');
 
 const app = express();
-const sessionParameter = {
+var sessionParameter = {
   secret: 'kitano Test', // 秘密キーテキスト
   resave: false, // セッションストアには保存しない
   saveUninitialized: false, // 初期化していない値の強制保存はしない

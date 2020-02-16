@@ -25,7 +25,7 @@ router.post('/execute', [
     check('mail', 'mail needs').notEmpty(), // メールアドレスの必須チェック
     check('mail', 'mail type').isEmail(),   // メールアドレスの形式チェック
     check('password', 'password needs').notEmpty(), // パスワードの必須チェック
-  ], (req, res, next) => {
+  ], async function(req, res, next) {
     // エラー情報の取り出し
     var errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -45,9 +45,31 @@ router.post('/execute', [
       res.render('signUp', data);
     } else {
       body = req.body;
-      users.insertUsers(mysql, body)
-      // todo アカウント作成完了ページに遷移
-      res.redirect("/");
+      result = await users.insertUsers(mysql, body)
+
+      if (result == "DUP"){
+        // メールアドレスが重複しているのでやり直しさせる
+        var errMsg = '<ul class="sm-error-message">';
+        errMsg += '<li>Specified Mail address already Used</li>';
+        errMsg += '</ul>';
+
+        var data = {
+          errMsg: errMsg,
+          form: req.body,
+          isSignIn: req.session.isSignIn,
+          isDisplay: false,
+        }
+        res.render('signUp', data);
+      } else if (result == "ERR"){
+        res.status(500).send({ error: 'Oops! Unknown Error Causing' })
+      } else {
+        // サインイン状態の設定
+        req.session.userId = result;
+        req.session.isSignIn = true;
+
+        // todo アカウント作成完了ページに遷移
+        res.redirect("/");
+      }
     }
 });
 

@@ -11,6 +11,7 @@ var mysql = require('../modules/accessor').mysql;
 /* GET listing. */
 router.get('/', function(req, res, next) {
   req.session.isSignIn = false;
+  req.session.userId = undefined;
   res.redirect("/");
 });
 
