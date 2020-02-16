@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   var data = {
     errMsg: '',
     isSignIn: req.session.isSignIn,
-    isRightDisplay: false,
+    isDisplay: false,
   }
   res.render('signIn', data);
 });
@@ -48,7 +48,7 @@ router.post('/execute', [
       var data = {
         errMsg: errMsg,
         isSignIn: req.session.isSignIn,
-        isRightDisplay: false,
+        isDisplay: false,
       }
       res.render('signIn', data);
     } else {

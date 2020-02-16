@@ -52,6 +52,11 @@ a {
   min-width:  200px;
 }
 
+.sm-width-600 {
+  max-width:  600px;
+  min-width:  600px;
+}
+
 .sm-width-new-item {
   max-width:  968px;
   min-width:  968px;
@@ -184,4 +189,8 @@ a {
 .sm-cart-icon {
   width: 35px;
   height: 35px;
+}
+
+.sm-search-item {
+  border: none;
 }

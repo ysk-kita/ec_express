@@ -17,7 +17,7 @@ router.get('/', async function(req, res, next) {
     items: checker.isEmpty(newItem)? []: newItem,
     existItem: !checker.isEmpty(newItem),
     isSignIn: req.session.isSignIn,
-    isRightDisplay: true,
+    isDisplay: true,
   };
 
   res.render('index', data);

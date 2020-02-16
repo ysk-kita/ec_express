@@ -16,14 +16,16 @@ router.post('/', async function(req, res, next) {
   } else {
     // 検索アイテムが指定されているので、searchページに遷移する
     var isSale = true;
-    var newItems = await items.getSearchItems(mysql);
+    var searchItems = await items.getSearchItems(mysql, req.body.search);
+
     var data = {
-      title: 'Kitazon' ,
-      sale_status: isSale ? "active": "disabled",
-      items: newItems,
-      existItem: !checker.isEmpty(newItems)
+      title: '検索結果',
+      items: searchItems,
+      existItem: !checker.isEmpty(searchItems),
+      isSignIn: req.session.isSignIn,
+      isDisplay: true,
     };
-    res.render('index', data);
+    res.render('search', data);
   }
 });
 

@@ -12,7 +12,9 @@ var mysql = require('../modules/accessor').mysql;
 router.get('/', function(req, res, next) {
   var data = {
     errMsg: '',
-    form: {name:'', mail:'', password:''}
+    form: {name:'', mail:'', password:''},
+    isSignIn: req.session.isSignIn,
+    isDisplay: false,
   }
   res.render('signUp', data);
 });
@@ -36,7 +38,9 @@ router.post('/execute', [
 
       var data = {
         errMsg: errMsg,
-        form: req.body
+        form: req.body,
+        isSignIn: req.session.isSignIn,
+        isDisplay: false,
       }
       res.render('signUp', data);
     } else {

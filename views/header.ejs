@@ -8,30 +8,27 @@
 
   <div class="collapse navbar-collapse" id="nav1">
     <!-- 左側Nav -->
-    <div class="d-none d-md-inline">
-      <form class="form-inline" method="post" action="/search">
-        <input class="form-control-sm my-0 mr-sm-2" type="search" name="search" placeholder="Search..." aria-label="Search...">
-        <button type="submit" class="sm-button-search my-0">Search</button>
-      </form>
-    </div>
+    <% if (isDisplay) { %>
+      <div class="d-none d-md-inline">
+        <form class="form-inline" method="post" action="/search">
+          <input class="form-control-sm my-0 mr-sm-2" type="search" name="search" placeholder="Search..." aria-label="Search...">
+          <button type="submit" class="sm-button-search my-0">Search</button>
+        </form>
+      </div>
+    <% } %>
     <!-- 右側Nav -->
-    <% if (isRightDisplay) { %>
-      <% if (isSignIn) { %>
-        <div class="navbar-nav ml-auto d-none d-md-flex align-items-center">
-          <form class="form-inline">
+    <% if (isDisplay) { %>
+      <div class="navbar-nav ml-auto d-none d-md-flex align-items-center">
+        <form class="form-inline">
+          <% if (isSignIn) { %>
             <button type="submit" formaction="/signOut" class="btn btn-outline-secondary my-2 mr-2">Sign Out</button>
-          </form>
-          <img class="border card-img-top sm-cart-icon" src="images/cart.png" />
-        </div>
-      <% } else { %>
-        <div class="navbar-nav ml-auto d-none d-md-flex align-items-center">
-          <form class="form-inline">
+          <% } else { %>
             <button type="submit" formaction="/signIn" class="btn btn-outline-secondary my-2 mr-2">Sign In</button>
             <button type="submit" formaction="/signUp" class="btn btn-outline-secondary my-2 mr-2">Sign Up</button>
-          </form>
-          <img class="border card-img-top sm-cart-icon" src="images/cart.png" />
-        </div>
-      <% } %>
+          <% } %>
+        </form>
+        <a href="/"><img class="border card-img-top sm-cart-icon" src="images/cart.png" /></a>
+      </div>
     <% } %>
     <!-- タブレット時表示する縦のナビリスト -->
     <div class="d-block d-md-none">

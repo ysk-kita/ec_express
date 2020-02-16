@@ -8,8 +8,11 @@
   <body>
     <%- include('header') %>
 
-    <h1 class="sm-margin-top-20"><%= title %></h1>
-    <section class="new-item-area">
+    <section class="search-result-area sm-margin-top-20">
+      <%- include('searchResult') %>
+    </section>
+
+    <section class="new-item-area sm-margin-top-20">
       <%- include('newItems') %>
     </section>
 
