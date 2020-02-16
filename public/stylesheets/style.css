@@ -194,3 +194,8 @@ a {
 .sm-search-item {
   border: none;
 }
+
+.sm-detail-img {
+  height: 500px;
+  width:  500px;
+}

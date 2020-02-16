@@ -6,8 +6,15 @@ var getNewItems = function(client){
 }
 
 var getSearchItems = function(client, word){
-word = '%' + word + '%'
+  word = '%' + word + '%'
   return client.select("*").from("items").where('name', 'like', word)
+  .catch(function(){
+    console.log("Error Caused");
+  });
+}
+
+var getItems = function(client, id){
+  return client.select("*").from("items").where('id', id)
   .catch(function(){
     console.log("Error Caused");
   });
@@ -17,4 +24,5 @@ word = '%' + word + '%'
 module.exports = {
   getSearchItems,
   getNewItems,
+  getItems,
 };

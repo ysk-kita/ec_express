@@ -61,7 +61,7 @@ router.post('/execute', [
         }
         res.render('signUp', data);
       } else if (result == "ERR"){
-        res.status(500).send({ error: 'Oops! Unknown Error Causing' })
+        res.status(500).send('Oops! Unknown Error Causing')
       } else {
         // サインイン状態の設定
         req.session.userId = result;
