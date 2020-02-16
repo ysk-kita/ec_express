@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kitazon</title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' /> <!-- bootstrapから後で読み込むことにより、細かいクラス定義などを実現する -->
   </head>
   <body>
     <%- include('header') %>
 
-    <h1 class="sm-margin-top-20">Kitazon</h1>
-    <section class="new-item-area">
-      <%- include('newItems') %>
+    <section class="search-result-area sm-margin-top-20">
+      <%- include('detail') %>
     </section>
 
     <%- include('footer') %>

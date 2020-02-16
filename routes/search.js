@@ -23,7 +23,6 @@ router.post('/', async function(req, res, next) {
 
 
     var data = {
-      title: '検索結果',
       existItem: !checker.isEmpty(searchItems),
       items: searchItems,
       existNewItem: !checker.isEmpty(newItem),

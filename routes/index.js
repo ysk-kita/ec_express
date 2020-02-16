@@ -12,8 +12,6 @@ router.get('/', async function(req, res, next) {
   var isSale = true;
   var newItem = await items.getNewItems(mysql);
   var data = {
-    title: 'Kitazon' ,
-    sale_status: isSale ? "active": "disabled",
     newItems: checker.isEmpty(newItem)? []: newItem,
     existNewItem: !checker.isEmpty(newItem),
     isSignIn: req.session.isSignIn,

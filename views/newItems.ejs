@@ -10,9 +10,11 @@
             <td>
               <div class="sm-block-margin sm-width-200">
                 <div class="card border-0">
-                  <img class="border card-img-top sm-height-200" alt="<%= newItem.img_alt %>" src="<%= newItem.img %>"/>
+                  <a href="/detail?id=<%= newItem.id %>">
+                    <img class="border card-img-top sm-height-200" alt="<%= newItem.img_alt %>" src="<%= newItem.img %>"/>
+                  </a>
                   <div class="card-body sm-padding-0">
-                    <p class="sm-margin-vertical-0"><%= newItem.name %></p>
+                    <a href="/detail?id=<%= newItem.id %>" class="sm-margin-vertical-0"><%= newItem.name %></a>
                     <p class="text-right"><%= newItem.price %>円</p>
                   </div>
                 </div>

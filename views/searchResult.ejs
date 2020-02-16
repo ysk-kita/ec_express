@@ -8,13 +8,13 @@
         <% for (var item of items) { %>
         <div class="row no-gutters mb-3 border-bottom">
           <div class="col-4">
-            <a href="/detail?<%= item.id %>">
+            <a href="/detail?id=<%= item.id %>">
               <img src="<%= item.img %>" class="card-img sm-height-200 sm-width-200" alt="<%= item.img_alt %>">
             </a>
           </div>
           <div class="col-6">
             <div class="card-body h-100 d-flex ml-auto align-items-center">
-              <a href="/detail?<%= item.id %>">
+              <a href="/detail?id=<%= item.id %>">
                 <%= item.name %>
               </a>
             </div>
