@@ -10,12 +10,12 @@ var mysql = require('../modules/accessor').mysql;
 /* GET home page. */
 router.get('/', async function(req, res, next) {
   var isSale = true;
-  newItem = await items.getNewItems(mysql);
+  var newItem = await items.getNewItems(mysql);
   var data = {
     title: 'Kitazon' ,
     sale_status: isSale ? "active": "disabled",
-    items: checker.isEmpty(newItem)? []: newItem,
-    existItem: !checker.isEmpty(newItem),
+    newItems: checker.isEmpty(newItem)? []: newItem,
+    existNewItem: !checker.isEmpty(newItem),
     isSignIn: req.session.isSignIn,
     isDisplay: true,
   };

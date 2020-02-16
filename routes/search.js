@@ -17,11 +17,17 @@ router.post('/', async function(req, res, next) {
     // 検索アイテムが指定されているので、searchページに遷移する
     var isSale = true;
     var searchItems = await items.getSearchItems(mysql, req.body.search);
+    var newItem = await items.getNewItems(mysql);
+
+    console.log(searchItems);
+
 
     var data = {
       title: '検索結果',
-      items: searchItems,
       existItem: !checker.isEmpty(searchItems),
+      items: searchItems,
+      existNewItem: !checker.isEmpty(newItem),
+      newItems: checker.isEmpty(newItem)? []: newItem,
       isSignIn: req.session.isSignIn,
       isDisplay: true,
     };
