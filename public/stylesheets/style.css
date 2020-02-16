@@ -175,10 +175,13 @@ a {
   width:100px;
 }
 
-
 .sm-error-message {
   padding-left: 20px;
   list-style: none;
   color: red;
+}
 
+.sm-cart-icon {
+  width: 35px;
+  height: 35px;
 }

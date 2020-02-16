@@ -15,8 +15,11 @@ router.get('/', async function(req, res, next) {
     title: 'Kitazon' ,
     sale_status: isSale ? "active": "disabled",
     items: checker.isEmpty(newItem)? []: newItem,
-    existItem: !checker.isEmpty(newItem)
+    existItem: !checker.isEmpty(newItem),
+    isSignIn: req.session.isSignIn,
+    isRightDisplay: true,
   };
+
   res.render('index', data);
 });
 

@@ -3,15 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const session = require('express-session');
 // router load
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const searchRouter= require('./routes/search');
-const signinRouter= require('./routes/signin');
-const signupRouter= require('./routes/signup');
-const app = express();
+const signInRouter= require('./routes/signIn');
+const signUpRouter= require('./routes/signUp');
+const signOutRouter= require('./routes/signOut');
 
+const app = express();
+const sessionParameter = {
+  secret: 'kitano Test', // 秘密キーテキスト
+  resave: false, // セッションストアには保存しない
+  saveUninitialized: false, // 初期化していない値の強制保存はしない
+  cookie: { maxAge: 60 * 60 * 1000 }, // 1hクッキーを保存
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -22,12 +29,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session(sessionParameter));
+
 // Router
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/search', searchRouter);
-app.use('/signin', signinRouter);
-app.use('/signup', signupRouter);
+app.use('/signIn', signInRouter);
+app.use('/signUp', signUpRouter);
+app.use('/signOut', signOutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

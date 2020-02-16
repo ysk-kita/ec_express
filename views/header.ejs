@@ -15,12 +15,24 @@
       </form>
     </div>
     <!-- 右側Nav -->
-    <div class="navbar-nav ml-auto d-none d-md-block">
-      <form class="form-inline">
-        <button type="submit" formaction="/signin" class="btn btn-outline-secondary my-2 mr-2">Sign In</button>
-        <button type="submit" formaction="/signup" class="btn btn-outline-secondary my-2 mr-2">Sign Up</button>
-      </form>
-    </div>
+    <% if (isRightDisplay) { %>
+      <% if (isSignIn) { %>
+        <div class="navbar-nav ml-auto d-none d-md-flex align-items-center">
+          <form class="form-inline">
+            <button type="submit" formaction="/signOut" class="btn btn-outline-secondary my-2 mr-2">Sign Out</button>
+          </form>
+          <img class="border card-img-top sm-cart-icon" src="images/cart.png" />
+        </div>
+      <% } else { %>
+        <div class="navbar-nav ml-auto d-none d-md-flex align-items-center">
+          <form class="form-inline">
+            <button type="submit" formaction="/signIn" class="btn btn-outline-secondary my-2 mr-2">Sign In</button>
+            <button type="submit" formaction="/signUp" class="btn btn-outline-secondary my-2 mr-2">Sign Up</button>
+          </form>
+          <img class="border card-img-top sm-cart-icon" src="images/cart.png" />
+        </div>
+      <% } %>
+    <% } %>
     <!-- タブレット時表示する縦のナビリスト -->
     <div class="d-block d-md-none">
       <ul class="navbar-nav">

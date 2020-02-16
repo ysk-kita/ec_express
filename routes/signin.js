@@ -10,8 +10,10 @@ var mysql = require('../modules/accessor').mysql;
 router.get('/', function(req, res, next) {
   var data = {
     errMsg: '',
+    isSignIn: req.session.isSignIn,
+    isRightDisplay: false,
   }
-  res.render('signin', data);
+  res.render('signIn', data);
 });
 
 router.post('/execute', [
@@ -32,7 +34,7 @@ router.post('/execute', [
     var data = {
       errMsg: errMsg,
     }
-    res.render('signin', data);
+    res.render('signIn', data);
   } else {
     // get
     body = req.body;
@@ -45,10 +47,13 @@ router.post('/execute', [
 
       var data = {
         errMsg: errMsg,
+        isSignIn: req.session.isSignIn,
+        isRightDisplay: false,
       }
-      res.render('signin', data);
+      res.render('signIn', data);
     } else {
       // todo セッションにログイン情報を格納する
+      req.session.isSignIn = true;
       res.redirect("/");
     }
   }

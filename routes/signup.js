@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     errMsg: '',
     form: {name:'', mail:'', password:''}
   }
-  res.render('signup', data);
+  res.render('signUp', data);
 });
 
 router.post('/execute', [
@@ -38,7 +38,7 @@ router.post('/execute', [
         errMsg: errMsg,
         form: req.body
       }
-      res.render('signup', data);
+      res.render('signUp', data);
     } else {
       body = req.body;
       users.insertUsers(mysql, body)
