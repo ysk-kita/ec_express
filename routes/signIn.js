@@ -37,8 +37,8 @@ router.post('/execute', [
     res.render('signIn', data);
   } else {
     // get
-    body = req.body;
-    user = await users.getUsers(mysql, body.mail, body.password);
+    var body = req.body;
+    var user = await users.getUsers(mysql, body.mail, body.password);
 
     if(checker.isEmpty(user)){
       var errMsg = '<ul class="sm-error-message">';
@@ -52,9 +52,8 @@ router.post('/execute', [
       }
       res.render('signIn', data);
     } else {
-      // todo セッションにログイン情報を格納する
       req.session.isSignIn = true;
-      req.session.userId = user.id;
+      req.session.user = user.mail;
 
       res.redirect("/");
     }

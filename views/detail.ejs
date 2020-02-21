@@ -10,8 +10,9 @@
         </div>
         <div class="col-3 border d-flex flex-column justify-content-center" style="min-width:200px;">
           <div style="">
-            <form class="" method="post" action="/search">
+            <form class="" method="post" action="/cart/in">
               <div class="form-group d-flex justify-content-center">
+                <input type="hidden" name="itemId" value="<%= item.id %>">
                 <input type="number" name="quantity" value="1" min="1" style="max-width:40px;">
                 <button type="submit" class="sm-button-search my-0" style="margin-left:10px;">かごへ</button>
               </div>

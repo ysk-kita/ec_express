@@ -12,6 +12,7 @@ const signInRouter= require('./routes/signIn');
 const signUpRouter= require('./routes/signUp');
 const signOutRouter= require('./routes/signOut');
 const detailRouter= require('./routes/detail');
+const cartRouter= require('./routes/cart');
 
 const app = express();
 var sessionParameter = {
@@ -40,6 +41,7 @@ app.use('/signIn', signInRouter);
 app.use('/signUp', signUpRouter);
 app.use('/signOut', signOutRouter);
 app.use('/detail', detailRouter);
+app.use('/cart', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
