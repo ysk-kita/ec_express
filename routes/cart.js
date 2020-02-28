@@ -11,7 +11,7 @@ router.post('/in', async function(req, res, next) {
   if (req.session.isSignIn){ 
     // ログインしている場合はDBに情報を格納
     
-    var result = cart.insertCart(mysql, req.body.itemId, req.body.quantity);
+    var result = cart.insertCart(mysql, req.session.user, req.body.itemId, req.body.quantity);
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else {
@@ -30,11 +30,28 @@ router.post('/in', async function(req, res, next) {
       itemId: req.body.itemId,
       quantity: parseInt(req.body.quantity),
     };
-    // 同じ商品がかごに入ったら配列から要素を取り出して加算する処理を作る
-    req.session.cartInItems.push(cartInItem);
+
+    // itemIdが被っていないアイテムのみ取り出し
+    var notSameItemList = req.session.cartInItems.filter(function(item){
+      return item.itemId != cartInItem.itemId;
+    });
+    // itemIdが被っているアイテムはdictを取り出し
+    var sameItem = req.session.cartInItems.find(function(item){
+      return item.itemId == cartInItem.itemId;
+    });
+    
+    if(sameItem == undefined){
+      // 既存のかごにある商品と被っていないのでそのままかごにいれる
+      req.session.cartInItems.push(cartInItem);
+    } else {
+      // ItemIdが被っているアイテムの数量を加算
+      sameItem.quantity += cartInItem.quantity
+      notSameItemList.push(sameItem);
+      req.session.cartInItems = notSameItemList;
+    }
+    
+    res.redirect('/cart');
   }
-  
-  res.redirect('/cart');
 });
 
 /* かごページを開く */
@@ -47,3 +64,4 @@ router.get('/', async function(req, res, next) {
 });
 
 module.exports = router;
+
