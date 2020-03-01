@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
               // テーブル作成時に文字コードを設定
               table.charset('utf8');
               table.increments('id').primary();
-              table.string('user'); 
+              table.string('user');
               table.string('itemId').unique();
               table.integer('quantity');
           });
