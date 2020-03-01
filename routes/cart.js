@@ -11,11 +11,32 @@ router.post('/in', async function(req, res, next) {
   if (req.session.isSignIn){ 
     // ログインしている場合はDBに情報を格納
     
-    var result = cart.insertCart(mysql, req.session.user, req.body.itemId, req.body.quantity);
+    // セッション上にアイテムを管理しているか確認、未ログイン状態で商品をかごに複数入れていればまとめてDBに投入
+    var insertItems = checker.isEmpty(req.session.cartInItems)? [] : req.session.cartInItems;
+    
+    // ログインユーザの情報をアイテムに付与
+    insertItems.forEach((item)=>{
+      //item.user = req.session.user;
+      item.user = "hoge";
+    });
+    var cartInItem = {
+      //user: req.session.user,
+      user: 'hoge',
+      itemId: req.body.itemId,
+      quantity: parseInt(req.body.quantity),
+    };
+    insertItems.push(cartInItem);
+    
+    console.log("このアイテムをかごにいれます");
+    console.log(insertItems);
+    console.log("---");
+    
+    var result = cart.insertCart(mysql, insertItems);
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else {
-      // かごぺーじに遷移
+      // かごぺーじに遷移 ログイン中はセッション上のかご情報をリセット
+      req.session.cartInItems = [];
       res.redirect('/cart');    
     }
   } else { 

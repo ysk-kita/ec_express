@@ -1,7 +1,8 @@
-var insertCart = function(client, user, itemId, quantity){
-  return client('users').insert([
-    {user: user, itemId: itemId, quantity: quantity},
-  ]).then(function(res){
+var insertCart = function(client, insertItems){
+  return client('users').insert(insertItems).then(function(res){
+    console.log("以下のアイテムをかごDBにいれました");
+    console.log(insertItems);
+    console.log("---");
     return "OK";
   })
   .catch(function(err){
