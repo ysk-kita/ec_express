@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
               table.charset('utf8');
               table.increments('id').primary();
               table.string('user');
-              table.string('itemId').unique();
+              table.string('itemId');
               table.integer('quantity');
           });
       }else{

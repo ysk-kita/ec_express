@@ -53,8 +53,7 @@ router.post('/execute', [
       res.render('signIn', data);
     } else {
       req.session.isSignIn = true;
-      req.session.user = user.mail;
-
+      req.session.user = user[0].mail; 
       res.redirect("/");
     }
   }

@@ -79,6 +79,10 @@ router.get('/', async function(req, res, next) {
     var errCode = req.query['errCode'];
   }
   // コードに応じたエラーメッセージ取得処理
+  var result = await cart.getCartItems(mysql, 'test');
+  console.log("--result--");
+  console.log(result);
+  console.log("----");
   res.redirect('/');
 });
 

@@ -1,0 +1,32 @@
+<h4 class="border-bottom">かごには以下の商品が入っています</h4>
+
+<% if (existItem) { %>
+  <div class="container-fluid sm-padding-horizontal-0 sm-width-new-item">
+    <div class="row d-flex justify-content-center">
+    <!-- 商品情報をループして出力させる -->
+      <div class="card sm-search-item w-75" >
+        <% for (var item of items) { %>
+        <div class="row no-gutters mb-3 border-bottom">
+          <div class="col-4">
+            <a href="/detail?id=<%= item.id %>">
+              <img src="<%= item.img %>" class="card-img sm-height-200 sm-width-200" alt="<%= item.img_alt %>">
+            </a>
+          </div>
+          <div class="col-6">
+            <div class="card-body h-100 d-flex ml-auto align-items-center">
+              <a href="/detail?id=<%= item.id %>">
+                <%= item.name %>
+              </a>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card-body h-100 d-flex ml-auto align-items-end">
+              <%= item.price %>円
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>  
+<% } %>
