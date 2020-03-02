@@ -16,27 +16,21 @@ router.post('/in', async function(req, res, next) {
 
     // ログインユーザの情報をアイテムに付与
     insertItems.forEach((item)=>{
-      //item.user = req.session.user;
-      item.user = "hoge";
+      item.user = req.session.user;
     });
     var cartInItem = {
-      //user: req.session.user,
-      user: 'hoge',
+      user: req.session.user,
       itemId: req.body.itemId,
       quantity: parseInt(req.body.quantity),
     };
     insertItems.push(cartInItem);
 
-    console.log("このアイテムをかごにいれます");
-    console.log(insertItems);
-    console.log("---");
-
-    var result = cart.insertCart(mysql, insertItems);
+    var result = await cart.insertCart(mysql, insertItems);
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else if(result == "DUP"){
       // かごページに遷移して、エラーメッセージを出すようにする
-      res.status(500).send("Same Item Already Exist");
+      res.redirect('/cart?errCode='+ result);
     } else {
       // かごぺーじに遷移 ログイン中はセッション上のかご情報をリセット
       req.session.cartInItems = [];
@@ -80,11 +74,15 @@ router.post('/in', async function(req, res, next) {
 
 /* かごページを開く */
 router.get('/', async function(req, res, next) {
-
-  console.log("かごには今以下の商品が入っています");
-  console.log(req.session.cartInItems);
-  console.log("----");
+  
+  if(!checker.isEmpty(req.query['errCode'])){
+    var errCode = req.query['errCode'];
+  }
+  // コードに応じたエラーメッセージ取得処理
   res.redirect('/');
 });
+
+/* かごページを開く */
+
 
 module.exports = router;
