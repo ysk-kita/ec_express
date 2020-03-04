@@ -18,11 +18,11 @@ var insertCart = function(client, insertItems){
 /* かごに入っている商品情報を引き出す */
 var getCartItems = function(client, user){
   // SELECT items.name, cart.quantity, items.price
-  // FROM items JOIN cart ON items.id = cart.itemId 
+  // FROM items JOIN cart ON items.id = cart.itemId
   // WHERE cart.user = user; を実現
   return client('items')
     .join('cart', 'items.id', 'cart.itemId')
-    .select('items.name', 'cart.quantity', 'items.price')
+    .select('items.img', 'items.name', 'cart.quantity', 'items.price')
     .where('cart.user', user);
 }
 

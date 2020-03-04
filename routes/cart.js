@@ -74,16 +74,31 @@ router.post('/in', async function(req, res, next) {
 
 /* かごページを開く */
 router.get('/', async function(req, res, next) {
-  
-  if(!checker.isEmpty(req.query['errCode'])){
-    var errCode = req.query['errCode'];
+
+  if(req.session.isSignIn){
+    if(!checker.isEmpty(req.query['errCode'])){
+      var errCode = req.query['errCode'];
+    }
+    // コードに応じたエラーメッセージ取得処理
+
+    // 商品情報取得処理
+    var result = await cart.getCartItems(mysql, req.session.user);
+    var data = {
+      items: result,
+      isSignIn: req.session.isSignIn,
+      isDisplay: false,
+      existItem: !checker.isEmpty(result),
+    };
+    res.render('cart', data);
+  } else {
+    var data = {
+      items: [],
+      existItem: !checker.isEmpty([]),
+      isSignIn: req.session.isSignIn,
+      isDisplay: false,
+    };
+    res.render('cart', data);
   }
-  // コードに応じたエラーメッセージ取得処理
-  var result = await cart.getCartItems(mysql, 'test');
-  console.log("--result--");
-  console.log(result);
-  console.log("----");
-  res.redirect('/');
 });
 
 /* かごページを開く */

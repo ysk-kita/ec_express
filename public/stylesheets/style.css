@@ -199,3 +199,9 @@ a {
   height: 500px;
   width:  500px;
 }
+
+.sm-cart-area{
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
