@@ -6,7 +6,6 @@
     <div class="card sm-search-item w-75" >
       <% var i = 0; var sumPrice = 0; %>
       <% for (var item of items) { %>
-      <form >
         <div class="row no-gutters mb-3 border-bottom">
           <div class="col-4">
             <a href="/detail?id=<%= item.id %>">
@@ -25,11 +24,12 @@
               <label>
                 数量: 
                 <select onChange="reCalcPrice(<%= items.length %>)" id="quantity-<%= i %>">
-                  <!-- todo selectbox値をejsで動的に作成 -->
                   <option value="<%= item.quantity %>"><%= item.quantity %></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                  <!-- 現在の数量を除いた値を -->
+                  <% for (var j=1; j<10; j ++) { %>
+                    <% if (j == item.quantity) { continue; } %>
+                    <option value="<%= j %>"><%= j %></option>
+                  <% } %>
                 </select>
               </label>
             </div>
@@ -40,7 +40,6 @@
             </div>
           </div>
         </div>
-      </form>
       <% i++; sumPrice += item.price * item.quantity; %>
       <% } %>
     </div>
