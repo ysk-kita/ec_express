@@ -1,19 +1,18 @@
-function calkPrice() {
- var num0 = document.getElementById('quantity').value;
- var num1 = document.getElementById('price').value;
+function reCalcPrice(calcCount){
+ 
+ var sumPrice = 0;
+ for (var i=0; i < calcCount; i++){
+  // 単価取得
+  var unitPrice = parseInt(document.getElementById("price-" + i).textContent);
+  // セレクトボックスオブジェクトを取得
+  var selectBoxHtmlObject = document.getElementById("quantity-" + i);
+  // 現在指定している値を取得する
+  var index = selectBoxHtmlObject.selectedIndex;
+  var quantity = selectBoxHtmlObject.options[index].value;
 
- if ( isNaN(num0) || num0 == '' ){
- var num0 = 0;
+  // 総計に加算
+  sumPrice += unitPrice * quantity;
  }
- 
- alert(num1);
- var sum = parseInt(num0) * parseInt(num1);
- document.getElementById('sum').innerHTML = addFigure(sum);
-}
- 
-// 3桁でカンマを入れる
-function addFigure(str){
- var num = new String(str).replace(/,/g, "");
- while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
- return num;
+ // テキスト置き換え
+ document.getElementById("sum").textContent = sumPrice;
 }

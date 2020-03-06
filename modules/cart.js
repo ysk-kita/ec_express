@@ -22,7 +22,7 @@ var getCartItems = function(client, user){
   // WHERE cart.user = user; を実現
   return client('items')
     .join('cart', 'items.id', 'cart.itemId')
-    .select('items.img', 'items.name', 'cart.quantity', 'items.price')
+    .select('items.id', 'items.img', 'items.name', 'cart.quantity', 'items.price')
     .where('cart.user', user);
 }
 
