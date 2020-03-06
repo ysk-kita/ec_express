@@ -1,25 +1,30 @@
 <div class="container-fluid sm-padding-horizontal-0 border">
-    <div class="d-flex">
-      <div class="row w-100">
-        <div class="col-5">
-          <img src="<%= item.img %>" class=" sm-detail-img" alt="<%= item.img_alt %>">
-        </div>
-        <div class="col-4 d-flex flex-column justify-content-center">
-          <div><h4><%= item.name %></h4>
-          <p>商品説明:</p></div>
-        </div>
-        <div class="col-3 border d-flex flex-column justify-content-center" style="min-width:200px;">
-          <div style="">
-            <form class="" method="post" action="/cart/in">
-              <div class="form-group d-flex justify-content-center">
-                <input type="hidden" name="itemId" value="<%= item.id %>">
-                <input type="number" name="quantity" value="1" min="1" style="max-width:40px;">
-                <button type="submit" class="sm-button-search my-0" style="margin-left:10px;">かごへ</button>
+  <div class="row d-flex justify-content-center">
+    <div class="card sm-search-item w-100" >
+        <div class="row no-gutters mb-3 border-bottom">
+          <div class="col-5 d-flex align-items-center sm-detail-img">
+            <img src="<%= item.img %>" class="card-img sm-detail-img">
+          </div>
+          <div class="col-4">
+            <div class="card-body h-100 d-flex align-items-center">
+              <div class=" flex-column">
+                <h4><%= item.name %></h4>
+                <p>商品説明:</p>
               </div>
-            </form>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card-body h-100 d-flex ml-auto align-items-center">
+              <form class="" method="post" action="/cart/in">
+                <div class="form-group d-flex justify-content-center">
+                  <input type="hidden" name="itemId" value="<%= item.id %>">
+                  <input type="number" name="quantity" value="1" min="1" style="max-width:40px;">
+                  <button type="submit" class="sm-button-search my-0" style="margin-left:10px;">かごへ</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

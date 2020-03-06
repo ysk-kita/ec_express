@@ -196,8 +196,10 @@ a {
 }
 
 .sm-detail-img {
-  height: 500px;
-  width:  500px;
+  max-height: 400px;
+  max-width:  400px;
+  min-height: 400px;
+  min-width: 400px;
 }
 
 .sm-cart-area{
