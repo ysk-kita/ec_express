@@ -101,7 +101,9 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-/* かごページを開く */
-
+/* かごから商品を削除する */
+router.get('/delete', async function(req, res, next) {
+  
+});
 
 module.exports = router;
