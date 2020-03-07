@@ -29,7 +29,7 @@ router.post('/in', async function(req, res, next) {
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else if(result == "DUP"){
-      // かごページに遷移して、エラーメッセージを出すようにする
+      // 同じ商品が入っていた場合かごページに遷移して、エラーメッセージを出すようにする
       res.redirect('/cart?errCode='+ result);
     } else {
       // かごぺーじに遷移 ログイン中はセッション上のかご情報をリセット
@@ -91,6 +91,7 @@ router.get('/', async function(req, res, next) {
     };
     res.render('cart', data);
   } else {
+    // todo サインインしていない場合は、セッションに持つ商品IDから商品情報を取得して、リスト成形して出力
     var data = {
       items: [],
       existItem: !checker.isEmpty([]),
@@ -103,7 +104,16 @@ router.get('/', async function(req, res, next) {
 
 /* かごから商品を削除する */
 router.get('/delete', async function(req, res, next) {
-  
+  var deleteItemId = req.query['id'];
+
+  if(req.session.isSignIn){
+    await cart.deleteCartItems(mysql, req.session.user, deleteItemId);
+    res.redirect('/cart');
+  } else {
+    // todo サインインしていない場合はセッションから該当のアイテムを削除
+    res.redirect('/cart');
+  }
+
 });
 
 module.exports = router;

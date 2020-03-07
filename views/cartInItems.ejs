@@ -22,7 +22,7 @@
           <div class="col-2">
             <div class="card-body h-100 d-flex ml-auto align-items-center">
               <label>
-                数量: 
+                数量:
                 <select onChange="reCalcPrice(<%= items.length %>)" id="quantity-<%= i %>">
                   <option value="<%= item.quantity %>"><%= item.quantity %></option>
                   <!-- 現在の数量を除いた値を -->
@@ -37,8 +37,8 @@
           <div class="col-3">
             <div class="card-body h-100 d-flex ml-auto align-items-end justify-content-end">
               <div class="d-flex align-items-center">
-                <label class="sm-margin-zero"><span id="price-<%= i %>"><%= item.price %></span>円</label>
-                <label class="sm-margin-horizontal-10"><a href="/cart/delete?id=<%= item.id %>">削除</a></label>
+                <label class="sm-margin-0"><span id="price-<%= i %>"><%= item.price %></span>円</label>
+                <label class="sm-margin-horizontal-10 sm-margin-vertical-0"><a href="/cart/delete?id=<%= item.id %>">削除</a></label>
               </div>
             </div>
           </div>

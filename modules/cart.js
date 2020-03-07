@@ -26,7 +26,15 @@ var getCartItems = function(client, user){
     .where('cart.user', user);
 }
 
+var deleteCartItems = function(client, user, itemId){
+  return client('cart')
+    .where('itemId', itemId)
+    .andWhere('user', user)
+    .del();
+}
+
 module.exports = {
   insertCart,
   getCartItems,
+  deleteCartItems,
 };
