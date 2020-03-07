@@ -36,7 +36,6 @@ router.post('/execute', [
     }
     res.render('signIn', data);
   } else {
-    // get
     var body = req.body;
     var user = await users.getUsers(mysql, body.mail, body.password);
 
@@ -52,8 +51,9 @@ router.post('/execute', [
       }
       res.render('signIn', data);
     } else {
+      // todo サインイン成功時、セッションにかご情報をもっていれば格納させる
       req.session.isSignIn = true;
-      req.session.user = user[0].mail; 
+      req.session.user = user[0].mail;
       res.redirect("/");
     }
   }

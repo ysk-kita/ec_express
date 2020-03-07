@@ -26,6 +26,7 @@ var getCartItems = function(client, user){
     .where('cart.user', user);
 }
 
+/* 指定した商品をかごから削除する */
 var deleteCartItems = function(client, user, itemId){
   return client('cart')
     .where('itemId', itemId)
@@ -33,8 +34,32 @@ var deleteCartItems = function(client, user, itemId){
     .del();
 }
 
+/* 特定ユーザの特定商品群のかご情報を取得する */
+var getManyCartItems = function(client, user, idList){
+  return client.select("*")
+    .from("cart")
+    .whereIn('itemId', idList)
+    .andWhere('user', user)
+    .catch(function(){
+      console.log("Error Caused");
+    });
+}
+
+/* かご内商品数量の更新 */
+var updateQuantity = function(client, user, updateItem){
+  return client('cart')
+    .where('user', user)
+    .andWhere('itemId', updateItem.itemId)
+    .update({quantity: updateItem.quantity,})
+    .catch(()=>{
+      console.log("Update Error Caused");
+    });
+}
+
 module.exports = {
   insertCart,
   getCartItems,
   deleteCartItems,
+  getManyCartItems,
+  updateQuantity,
 };

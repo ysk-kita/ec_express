@@ -25,9 +25,7 @@ var getManyItems = function(client, idList){
   .catch(function(){
     console.log("Error Caused");
   });
-
 }
-
 
 module.exports = {
   getSearchItems,

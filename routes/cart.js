@@ -25,13 +25,50 @@ router.post('/in', async function(req, res, next) {
       quantity: parseInt(req.body.quantity),
     };
     insertItems.push(cartInItem);
-
+    // かご登録処理
     var result = await cart.insertCart(mysql, insertItems);
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else if(result == "DUP"){
-      // 同じ商品が入っていた場合かごページに遷移して、エラーメッセージを出すようにする
-      res.redirect('/cart?errCode='+ result);
+      // TODO 数量を更新する
+      var idList = []
+      insertItems.forEach(item => idList.push(item.itemId));
+      var storedItems = await cart.getManyCartItems(mysql, req.session.user, idList);
+
+      // かご格納済み商品は更新を行う
+      var updateList = insertItems.filter(item => {
+        return storedItems.filter(storedItem => {
+          return item.itemId == storedItem.itemId;
+        });
+      });
+      console.log("--更新前--");
+      console.log(storedItems);
+
+      updateList.forEach(updateItem => {
+        storedItems.forEach(storedItem => {
+          if (updateItem.itemId == storedItem.itemId){
+            updateItem.quantity += storedItem.quantity
+          }
+        });
+      });
+
+      await updateList.forEach(updateItem => {
+        cart.updateQuantity(mysql, req.session.user, updateItem);
+      });
+
+      // かご未格納商品は再度格納する
+      var insertList = insertItems.filter(item => {
+        return storedItems.filter(storedItem => {
+          return item.itemId != storedItem.itemId;
+        });
+      });
+      if(!checker.isEmpty(insertList)){
+        await cart.insertCart(mysql, insertList);
+      }
+
+      // かごぺーじに遷移 ログイン中はセッション上のかご情報をリセット
+      req.session.cartInItems = [];
+      res.redirect('/cart');
     } else {
       // かごぺーじに遷移 ログイン中はセッション上のかご情報をリセット
       req.session.cartInItems = [];
@@ -44,7 +81,6 @@ router.post('/in', async function(req, res, next) {
     if (checker.isEmpty(req.session.cartInItems)){
       req.session.cartInItems = [];
     }
-
     var cartInItem = {
       itemId: req.body.itemId,
       quantity: parseInt(req.body.quantity),
@@ -68,20 +104,13 @@ router.post('/in', async function(req, res, next) {
       notSameItemList.push(sameItem);
       req.session.cartInItems = notSameItemList;
     }
-
     res.redirect('/cart');
   }
 });
 
 /* かごページを開く */
 router.get('/', async function(req, res, next) {
-
   if(req.session.isSignIn){
-    if(!checker.isEmpty(req.query['errCode'])){
-      var errCode = req.query['errCode'];
-    }
-    // コードに応じたエラーメッセージ取得処理
-
     // 商品情報取得処理
     var result = await cart.getCartItems(mysql, req.session.user);
     var data = {
