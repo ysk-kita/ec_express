@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var cart = require('../modules/cart.js');
+var items = require('../modules/items.js');
 var checker = require('../modules/checker.js');
 // DB接続knexインスタンス
 var mysql = require('../modules/accessor').mysql;
@@ -91,29 +92,63 @@ router.get('/', async function(req, res, next) {
     };
     res.render('cart', data);
   } else {
-    // todo サインインしていない場合は、セッションに持つ商品IDから商品情報を取得して、リスト成形して出力
-    var data = {
-      items: [],
-      existItem: !checker.isEmpty([]),
-      isSignIn: req.session.isSignIn,
-      isDisplay: false,
-    };
-    res.render('cart', data);
+    // サインインしていない場合は、セッションに持つ商品IDから商品情報を取得して、リスト成形して出力
+    if(checker.isEmpty(req.session.cartInItems)){
+      var data = {
+        items: [],
+        existItem: false,
+        isSignIn: req.session.isSignIn,
+        isDisplay: false,
+      };
+      res.render('cart', data);
+    } else {
+      var idList = [];
+      req.session.cartInItems.forEach(function(cartInItem) {
+        idList.push(cartInItem.itemId);
+      });
+      itemList = await items.getManyItems(mysql,idList);
+      // 商品リストに数量を紐づける
+      var cartItems = storedQuantity(itemList, req.session.cartInItems);
+
+      var data = {
+        items: cartItems,
+        existItem: !checker.isEmpty(cartItems),
+        isSignIn: req.session.isSignIn,
+        isDisplay: false,
+      };
+      res.render('cart', data);
+    }
   }
 });
 
 /* かごから商品を削除する */
 router.get('/delete', async function(req, res, next) {
   var deleteItemId = req.query['id'];
-
   if(req.session.isSignIn){
     await cart.deleteCartItems(mysql, req.session.user, deleteItemId);
     res.redirect('/cart');
   } else {
-    // todo サインインしていない場合はセッションから該当のアイテムを削除
+    // サインインしていない場合はセッションから該当のアイテムを削除
+    var newList = req.session.cartInItems.filter(cartItem => {
+      return cartItem.itemId != deleteItemId;
+    });
+    req.session.cartInItems = newList
     res.redirect('/cart');
   }
-
 });
+
+/* セッション管理している数量と取得した商品情報を紐づける */
+function storedQuantity(itemList, cartInItems){
+  var displayList = []
+  itemList.forEach(function(item){
+    cartInItems.forEach(function(cartItem) {
+      if(item.id==cartItem.itemId){
+        item.quantity = cartItem.quantity;
+        displayList.push(item);
+      }
+    })
+  });
+  return displayList;
+}
 
 module.exports = router;

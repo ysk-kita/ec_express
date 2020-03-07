@@ -20,9 +20,18 @@ var getItems = function(client, id){
   });
 }
 
+var getManyItems = function(client, idList){
+  return client.select("*").from("items").whereIn('id', idList)
+  .catch(function(){
+    console.log("Error Caused");
+  });
+
+}
+
 
 module.exports = {
   getSearchItems,
   getNewItems,
   getItems,
+  getManyItems,
 };
