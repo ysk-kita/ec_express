@@ -30,7 +30,7 @@ router.post('/in', async function(req, res, next) {
     if (result == "ERR"){
       res.status(500).send('Oops! Unknown Error Causing');
     } else if(result == "DUP"){
-      // TODO 数量を更新する
+      // かご格納済み商品を抽出する
       var idList = []
       insertItems.forEach(item => idList.push(item.itemId));
       var storedItems = await cart.getManyCartItems(mysql, req.session.user, idList);
@@ -41,9 +41,6 @@ router.post('/in', async function(req, res, next) {
           return item.itemId == storedItem.itemId;
         });
       });
-      console.log("--更新前--");
-      console.log(storedItems);
-
       updateList.forEach(updateItem => {
         storedItems.forEach(storedItem => {
           if (updateItem.itemId == storedItem.itemId){
@@ -51,7 +48,6 @@ router.post('/in', async function(req, res, next) {
           }
         });
       });
-
       await updateList.forEach(updateItem => {
         cart.updateQuantity(mysql, req.session.user, updateItem);
       });
