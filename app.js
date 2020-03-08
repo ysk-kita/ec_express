@@ -13,11 +13,11 @@ const signOutRouter= require('./routes/signOut');
 const detailRouter= require('./routes/detail');
 const cartRouter= require('./routes/cart');
 const settleRouter= require('./routes/settle');
-const itemListRouter= require('./routes/itemList');
+const categoryRouter= require('./routes/category');
 
 const app = express();
 var sessionParameter = {
-  secret: 'kitano Test', // 秘密キーテキスト
+  secret: 'kitazon Session',
   resave: false, // セッションストアには保存しない
   saveUninitialized: false, // 初期化していない値の強制保存はしない
   cookie: { maxAge: 60 * 60 * 1000 }, // 1hクッキーを保存
@@ -43,7 +43,7 @@ app.use('/signOut', signOutRouter);
 app.use('/detail', detailRouter);
 app.use('/cart', cartRouter);
 app.use('/settle', settleRouter);
-app.use('/itemList', itemListRouter);
+app.use('/category', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

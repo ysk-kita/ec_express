@@ -1,22 +1,21 @@
-<div class="d-flex flex-column justify-content-start border">
-  <!-- todo 最終的にはdbからカテゴリ一蘭を取得して動的に生成 -->
-  <div class="d-flex justify-content-center sm-category">
-    <a class="sm-margin-0" href="/itemList">商品一覧</a>
-  </div>
-  <div class="d-flex justify-content-start">
-    <button type="button" class="sm-category-btn" data-toggle="collapse" data-target="#category-list" aria-expanded="false" aria-controls="category-list" id="category-btn">
-      <span id="category-btn-hide">カテゴリ一覧</span>
-    </button>
-  </div>
-  <div class="collapse" id="category-list">
-    <div class="d-flex justify-content-center sm-category-start">
-      <a class="sm-margin-0" href="/itemList?cate=1">カテゴリ1</a>
-    </div>
-    <div class="d-flex justify-content-center sm-category">
-      <a class="sm-margin-0" href="/itemList?cate=2">カテゴリ2</a>
-    </div>
-    <div class="d-flex justify-content-center sm-category-end">
-      <a class="sm-margin-0" href="/itemList?cate=3">カテゴリ3</a>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商品一覧</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' /> <!-- bootstrapから後で読み込むことにより、細かいクラス定義などを実現する -->
+  </head>
+  <body>
+    <%- include('header') %>
+
+    <section class="search-result-area sm-margin-top-20">
+      <%- include('categoryList') %>
+    </section>
+
+    <%- include('footer') %>
+
+    <!-- jQuery、Popper.js、Bootstrap.jsの順番で読み込み -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+  </body>
+</html>

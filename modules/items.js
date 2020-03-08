@@ -27,9 +27,17 @@ var getManyItems = function(client, idList){
   });
 }
 
+var getAllItems = function(client){
+  return client.select("*").from("items")
+  .catch(function(){
+    console.log("Error Caused");
+  });
+}
+
 module.exports = {
   getSearchItems,
   getNewItems,
   getItems,
   getManyItems,
+  getAllItems,
 };
