@@ -6,11 +6,7 @@ var checker = require('../modules/checker.js');
 // DB接続knexインスタンス
 var mysql = require('../modules/accessor').mysql;
 
-var category = {
-  '1': '食品1',
-  '2': '食品2',
-  '3': 'その他',
-}
+var categoryMap = require('../modules/category').categoryMap;
 
 /* GET users listing. */
 router.get('/',async function(req, res, next) {
@@ -26,10 +22,10 @@ router.get('/',async function(req, res, next) {
     };
     res.render('category', data);
   } else {
+    // カテゴライズされた商品を出力する
     var categoryItems = await items.getCategoryItems(mysql, req.query['cate']);
-
     var data = {
-      title: category[req.query['cate']] + '一覧',
+      title: categoryMap[req.query['cate']] + '一覧',
       existItem: !checker.isEmpty(categoryItems),
       items: categoryItems,
       isSignIn: req.session.isSignIn,
