@@ -9,10 +9,19 @@
     <%- include('header') %>
 
     <h1 class="sm-margin-top-20">Kitazon</h1>
-    <section class="new-item-area">
-      <%- include('newItems') %>
-    </section>
 
+    <span class="d-flex justify-content-start">
+      <div class="row">
+        <div class="col-2">
+          <%- include('category') %>
+        </div>
+        <div class="col-10">
+          <section class="new-item-area">
+            <%- include('newItems') %>
+          </section>
+        </div>
+      </div>
+    </span>
     <%- include('footer') %>
 
     <!-- jQuery、Popper.js、Bootstrap.jsの順番で読み込み -->
