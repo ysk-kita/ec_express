@@ -34,10 +34,18 @@ var getAllItems = function(client){
   });
 }
 
+var getCategoryItems = function(client, category){
+  return client.select("*").from("items").where('category', category)
+  .catch(function(){
+    console.log("Error Caused");
+  });
+}
+
 module.exports = {
   getSearchItems,
   getNewItems,
   getItems,
   getManyItems,
   getAllItems,
+  getCategoryItems,
 };

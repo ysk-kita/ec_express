@@ -12,8 +12,10 @@ router.get('/', async function(req, res, next) {
   var itemId = req.query['id'];
   var detail = await items.getItems(mysql, itemId);
 
+  console.log(detail)
+
   var data = {
-    title: 'test' ,
+    title: detail[0].name,
     item: detail[0],
     isSignIn: req.session.isSignIn,
     isDisplay: true,
