@@ -16,7 +16,9 @@ router.get('/', function(req, res, next) {
     isSignIn: req.session.isSignIn,
     isDisplay: false,
   }
-  res.render('signUp', data);
+  // 個人情報の管理をしたくないのでサインアップ機能は封鎖
+  // res.render('signUp', data);
+  res.render('maintenance', data);
 });
 
 router.post('/execute', [

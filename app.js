@@ -6,13 +6,13 @@ const logger = require('morgan');
 const session = require('express-session');
 // router load
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const searchRouter= require('./routes/search');
 const signInRouter= require('./routes/signIn');
 const signUpRouter= require('./routes/signUp');
 const signOutRouter= require('./routes/signOut');
 const detailRouter= require('./routes/detail');
 const cartRouter= require('./routes/cart');
+const settleRouter= require('./routes/settle');
 
 const app = express();
 var sessionParameter = {
@@ -35,13 +35,13 @@ app.use(session(sessionParameter));
 
 // Router
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/search', searchRouter);
 app.use('/signIn', signInRouter);
 app.use('/signUp', signUpRouter);
 app.use('/signOut', signOutRouter);
 app.use('/detail', detailRouter);
 app.use('/cart', cartRouter);
+app.use('/settle', settleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

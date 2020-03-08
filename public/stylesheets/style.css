@@ -220,3 +220,26 @@ a {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.sm-maintenance-area{
+  border-width: 1px;
+  border-style: solid;
+  width: 400px;
+  margin: 0 auto;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.sm-maintenance-area > span {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font: bold;
+}
+
+.sm-maintenance-area > span > h4 {
+  margin-bottom: 0px;
+}
+.sm-caution{
+  font: bold;
+  color: orange;
+  margin-left: 20px;
+}

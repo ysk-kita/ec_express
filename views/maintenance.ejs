@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' /> <!-- bootstrapから後で読み込むことにより、細かいクラス定義などを実現する -->
+  </head>
+  <body>
+
+    <%- include('header') %>
+
+    <div class="sm-margin-top-20">
+      <div class="sm-maintenance-area">
+        <span class="d-flex justify-content-center">
+          <h4>&#x26a0;</h4>
+          <h4 class="sm-caution">Caution!</h4>
+        </span>
+        <p>大変申し訳ございません。ただいまこの機能は利用することができません。</p>
+        <div class="d-flex justify-content-center">
+          <img src="images/maintenance.png" class="sm-height-200 sm-width-200">
+        </div>
+        <span class="d-flex justify-content-center ">
+          <form class="form-inline" method="get" action="/">
+            <button type="submit" class="sm-button-search my-0">トップページへ戻る</button>
+          </form>
+        </span>
+      </div>
+    </div>
+
+
+    <%- include('footer') %>
+
+    <!-- jQuery、Popper.js、Bootstrap.jsの順番で読み込み -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+  </body>
+</html>
